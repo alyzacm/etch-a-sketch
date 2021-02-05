@@ -1,23 +1,17 @@
-
-
 function createGrid(x){
     
-    const container = document.getElementById("grid");
-    container.innerHTML = '';
-    // document.documentElement.style.setProperty("--grid-rows", x);
-    // document.documentElement.style.setProperty("--grid-cols", x);
+    const gridContainer = document.getElementById("grid");
+    gridContainer.innerHTML = '';
     document.documentElement.style.setProperty("--columns-row", x);
     
             
     for(let i = 0; i < (x*x); i++){
         let cell = document.createElement('div');
-        // cell.innerText = (i + 1);
-        // container.appendChild(cell).className = "grid-item";
-        document.getElementById("grid").appendChild(cell);
+        gridContainer.appendChild(cell).className = "grid-item";
         cell.addEventListener("mouseenter", function() {
             this.style.backgroundColor = "black";
         });
     };
 };
 
-createGrid(16);
+createGrid(30);
