@@ -12,9 +12,9 @@ function createGrid(x = 16){
     for(let i = 0; i < (x*x); i++){
         let cell = document.createElement("div");
         gridContainer.appendChild(cell).className = "grid-item";
+        cell.counter = 0;
         cell.addEventListener("mouseenter", colorGrid);
-    }
-        
+    }       
 };
 
 function resetGrid(){
@@ -31,21 +31,23 @@ function resetGrid(){
 }
 
 function colorGrid(e){
+    let cell = e.target;
     if(color === 'black'){
-        e.target.style.background = 'black';
-        e.target.style.opacity = 1;
-    }
-    else if(color === 'grayscale'){
-        e.target.style.background = 'black';
-        let opacity = e.target.style.opacity;
-        if(Number(opacity) < 1){
-            e.target.style.opacity = (Number(opacity) + 0.1)
-        } 
-      
+        cell.style.background = 'black';
+        cell.style.opacity = 1;
     }
     else if(color === 'pastel'){
         let pastels = ["#E0BBE4", "#957DAD", "#D291BC", "FEC8D8", "FFDFD3"];
-        e.target.style.background = pastels[Math.floor(Math.random() * pastels.length)];
+        cell.style.background = pastels[Math.floor(Math.random() * pastels.length)];
+        cell.style.opacity = 1;
+    }
+    else if(color === 'shader'){
+        cell.style.background = 'black';
+        cell.counter++;
+        cell.style.opacity = 0.1 * e.target.counter;
+    }
+    else if(color === 'eraser'){
+        cell.style.background = 'white';
     }
 }
 
