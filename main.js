@@ -17,6 +17,10 @@ function createGrid(x = 16){
     }       
 };
 
+
+/* Prompt user for the size of new grid, max size is 100 and default size is 16
+ *   if no value is entered
+*/
 function resetGrid(){
     var size = prompt("How many squares per side for new grid?");
     if(size > 100){
@@ -30,6 +34,11 @@ function resetGrid(){
     }
 }
 
+
+/* pastel: chooses a random color from pastel color palette
+ * shader: adds 10% of black with every pass so that square is completely black 
+ *    after 10 passes
+*/
 function colorGrid(e){
     let cell = e.target;
     if(color === 'black'){
@@ -51,7 +60,14 @@ function colorGrid(e){
     }
 }
 
-function changeColor(e){
+/* Update color variable
+ * Remove previously selected button from active class
+ * Add currently selected button to active class
+*/
+function changeSelection(e){
+    var cur = document.getElementsByClassName("active");
+    cur[0].className = cur[0].className.replace("active", "");
+    this.className += " active";
     color = e.target.id;
 }
 
@@ -59,4 +75,4 @@ function changeColor(e){
 createGrid();
 
 resetButton.addEventListener('click', resetGrid);
-colorBtns.forEach((button) => button.addEventListener('click', changeColor));
+colorBtns.forEach((button) => button.addEventListener('click', changeSelection));
